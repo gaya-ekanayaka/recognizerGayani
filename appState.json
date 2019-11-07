@@ -1,0 +1,107 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "e97ebd40-98e1-4176-b83b-00f939f6436e": {
+        "id": "e97ebd40-98e1-4176-b83b-00f939f6436e",
+        "parent": null,
+        "name": "recognizerGayani",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "d29be0f5-642c-4dd1-b656-d158208e6aa5",
+          "d29be0f5-642c-4dd1-b656-d158208e6aa5"
+        ],
+        "isRemovable": false,
+        "filePath": "recognizerGayani"
+      },
+      "d29be0f5-642c-4dd1-b656-d158208e6aa5": {
+        "id": "d29be0f5-642c-4dd1-b656-d158208e6aa5",
+        "parent": "e97ebd40-98e1-4176-b83b-00f939f6436e",
+        "name": "lambdaGayani.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "recognizerGayani/lambdaGayani.js",
+        "code": "exports.handler = function(event, context, callback) {\n    console.log(JSON.stringify(event,null, 2));\n    \n    callback(null,event);\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "s3gayaninisha",
+            "config": {
+              "type": "s3:ObjectCreated:*",
+              "keyPrefix": "",
+              "keySuffix": ""
+            }
+          }
+        ],
+        "testCases": {
+          "0dcc390d-a305-48ee-b2f1-58a930553180": {
+            "id": "0dcc390d-a305-48ee-b2f1-58a930553180",
+            "name": "Unnamed event",
+            "functionId": "d29be0f5-642c-4dd1-b656-d158208e6aa5",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
+        }
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "e97ebd40-98e1-4176-b83b-00f939f6436e",
+    "openFiles": [
+      "d29be0f5-642c-4dd1-b656-d158208e6aa5"
+    ],
+    "currentFileId": "d29be0f5-642c-4dd1-b656-d158208e6aa5",
+    "resources": {
+      "s3gayaninisha": {
+        "name": "s3gayaninisha",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "gayani.nisha"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "recognizerGayani",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1573110104593
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "recognizerGayani",
+      "url": "https://github.com/gaya-ekanayaka/recognizerGayani"
+    }
+  }
+}
