@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "recognizerGayani/lambdaGayani.js",
-        "code": "let AWS = require(\"aws-sdk\");\nlet rekog = new AWS.Rekognition();\n\nexports.handler = function(event, context, callback) {\n    //console.log(JSON.stringify(event, null, 2));\n\n    let s3 = event.Records[0].s3;\n    rekog.detectLabels({\n        Image: {\n            S3Object: {\n                Bucket: gayani.nisha,\n                Name: s3.object.key\n            }\n        },\n        MaxLabels: 1\n    }).promise()\n    .then(data => {\n        console.log(data);\n        callback(null, {});\n    })\n    .catch(err => callback(err));\n}",
+        "code": "let AWS = require(\"aws-sdk\");\nlet rekog = new AWS.Rekognition();\n\nexports.handler = function(event, context, callback) {\n    //console.log(JSON.stringify(event, null, 2));\n\n    let s3 = event.Records[0].s3;\n    rekog.detectLabels({\n        Image: {\n            S3Object: {\n                Bucket: \"gayani.nisha\",\n                Name: s3.object.key\n            }\n        },\n        MaxLabels: 1\n    }).promise()\n    .then(data => {\n        console.log(data);\n        callback(null, {});\n    })\n    .catch(err => callback(err));\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -46,7 +46,7 @@
             "id": "0dcc390d-a305-48ee-b2f1-58a930553180",
             "name": "Unnamed event",
             "functionId": "d29be0f5-642c-4dd1-b656-d158208e6aa5",
-            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+            "event": "{\n    \"Records\": [\"value1\"],\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
           }
         },
         "customSecurityPolicy": {
@@ -113,7 +113,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1573111343177
+    "lastSave": 1573111869273
   },
   "VCS_STATE": {
     "provider": "GitHub",

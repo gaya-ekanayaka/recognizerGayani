@@ -8,7 +8,7 @@ exports.handler = function(event, context, callback) {
     rekog.detectLabels({
         Image: {
             S3Object: {
-                Bucket: gayani.nisha,
+                Bucket: "gayani.nisha",
                 Name: s3.object.key
             }
         },
