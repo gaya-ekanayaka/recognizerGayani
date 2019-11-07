@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "recognizerGayani/lambdaGayani.js",
-        "code": "let AWS = require(\"aws-sdk\");\nconst ddb = new AWS.DynamoDB.DocumentClient();\nlet rekog = new AWS.Rekognition();\n\nexports.handler = function (event, context, callback) {\n    //console.log(JSON.stringify(event, null, 2));\n\n    let s3 = event.Records[0].s3;\n    rekog.detectLabels({\n        Image: {\n            S3Object: {\n                Bucket: s3.bucket.name,\n                Name: s3.object.key\n            }\n        },\n        MaxLabels: 1\n    }).promise()\n        .then(data => {\n            console.log(data);\n            {\n                ddb.put({\n  TableName: 'gayani',\n  Item: {\n    'name': name,\n    'label': label\n  }\n}).promise()\n                    .then((data) => {\n                        //your logic goes here\n                    })\n                    .catch((err) => {\n                        //handle error\n                    });\n\n            }\n            let label = data.Labels[0].Name;\n\n\n            /* drag-n-drop DDB table */\n        })\n        .catch(err => callback(err));\n}",
+        "code": "let AWS = require(\"aws-sdk\");\nconst ddb = new AWS.DynamoDB.DocumentClient();\nlet rekog = new AWS.Rekognition();\n\nexports.handler = function (event, context, callback) {\n    //console.log(JSON.stringify(event, null, 2));\n\n    let s3 = event.Records[0].s3;\n    rekog.detectLabels({\n        Image: {\n            S3Object: {\n                Bucket: s3.bucket.name,\n                Name: s3.object.key\n            }\n        },\n        MaxLabels: 1\n    }).promise()\n        .then(data => {\n            console.log(data);\n            {\n                ddb.put({\n  TableName: 'gayani',\n  Item: {\n    'name': name,\n    'label': label\n  }\n}).promise()\n                    .then((data) => {\n                        callback(null, data);\n                    })\n                    .catch((err) => {\n                        callback(err);\n                    });\n\n            }\n            let label = data.Labels[0].Name;\n\n\n            /* drag-n-drop DDB table */\n        })\n        .catch(err => callback(err));\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -155,7 +155,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1573113512637
+    "lastSave": 1573113687377
   },
   "VCS_STATE": {
     "provider": "GitHub",

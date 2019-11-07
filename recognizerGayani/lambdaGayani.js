@@ -26,10 +26,10 @@ exports.handler = function (event, context, callback) {
   }
 }).promise()
                     .then((data) => {
-                        //your logic goes here
+                        callback(null, data);
                     })
                     .catch((err) => {
-                        //handle error
+                        callback(err);
                     });
 
             }
