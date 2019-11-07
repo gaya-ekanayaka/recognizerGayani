@@ -19,9 +19,12 @@ exports.handler = function (event, context, callback) {
             console.log(data);
             {
                 ddb.put({
-                    TableName: 'gayani',
-                    Item: { 'name': name }
-                }).promise()
+  TableName: 'gayani',
+  Item: {
+    'name': name,
+    'label': label
+  }
+}).promise()
                     .then((data) => {
                         //your logic goes here
                     })
